@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feliz Día de las Madres</title>
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&family=Alatsi&family=Albert+Sans:wght@400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="Estilos.css" />
+</head>
+<body>
+  <header>
+    <h1>Feliz día de las Madres <span class="heart">❤️</span></h1>
+  </header>
+
+  <div class="divider"></div>
+
+  <main>
+    <!-- Carta animada en sobre -->
+     <section>
+        <h2>Una Carta para ti</h2>
+     </section>
+    <div class="envelope-container">
+      <div id="envelope" class="envelope">
+        <div class="base"></div>
+        <div class="destinatario">
+          <p>Para: Mami</p>
+        </div>
+        <div class="letter">
+          <p>Gracias por tu amor incondicional, mami. Cada día contigo es un regalo que atesoramos en nuestro corazón.</p>
+          <p>Gracias por enseñarnos con paciencia y ternura. Eres inspiración y ejemplo.</p>
+          <p>En este día especial, queremos decirte lo mucho que te queremos y lo agradecidos que estamos por tenerte.</p>
+        </div>
+        <div class="flap"></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <section>
+      <h2>Gracias por tu Amor Mami!</h2>
+      <article class="card">
+        <p>Gracias mami por cuidarnos desde chiquitos, darnos amor y siempre estar ahi para nosotros.</p>
+        <img  class="imgHijos" src="/Mami/img/img1.jpg" alt="Andre">
+      </article>
+      <article class="card">
+        <p>LO QUE DIGA MIGUEL AQUI </p>
+        <img  class="imgHijos" src="/Mami/img/img2.jpg" alt="Miguel">
+      </article>
+      <article class="card">
+        <p>LO QUE DIGA ANGELLO AQUI</p>
+        <img  class="imgHijos" src="/Mami/img/img3.jpg" alt="Angello">
+      </article>
+      <article class="card">
+        <p> Gracias por tu apoyo incondicional, por ser ejemplo y por nunca dejar de creer en nosotros. Te amamos mami.</p>
+        <img  class="imgHijos" src="/Mami/img/img4.jpg" alt="Nene">
+      </article>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="gift-section">
+      <h2>¿Un Recuerdo?</h2>
+              <button id="downloadBtn" class="btn-send" type="button">Descargar Recuerdo</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Con mucho amor, todos ❤️</p>
+  </footer>
+
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h3>¡Feliz Día, Mami!</h3>
+      <button id="closeModal">Cerrar</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+  
+    const envelope = document.getElementById('envelope');
+    envelope.addEventListener('click', ()=> envelope.classList.toggle('open'));
+
+    const btn = document.getElementById('downloadBtn');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+
+    btn.addEventListener('click', async () => {
+      // Confetti
+      confetti({ particleCount: 200, spread: 70 });
+      // Modal
+      modal.classList.add('show');
+      // Captura y descarga
+      const canvas = await html2canvas(document.body, { scale:2 });
+      const img = canvas.toDataURL('image/png');
+      const link = document.createElement('a'); link.href=img; link.download='recuerdo_mama.png'; link.click();
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ unit:'px', format:[canvas.width,canvas.height] });
+      pdf.addImage(img,'PNG',0,0,canvas.width,canvas.height); pdf.save('recuerdo_mama.pdf');
+    });
+    closeModal.addEventListener('click', ()=> modal.classList.remove('show'));
+  </script>
+</body>
+</html>

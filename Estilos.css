@@ -1,0 +1,310 @@
+:root{
+    --color-body: #fde2ed;
+    --color-titulo: #A2134C;
+    --color-parrafo: #FF66A3;
+    --color-card-bg: #fff0f6;
+    --color-button: #A2134C;
+    --color-button-hover: #850032;
+    --divider-height: 6px;
+    --divider-radius: 3px;
+    --divider-gap: 1rem;
+}
+
+body{
+ background-color: var(--color-body);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  header h1 {
+    font-family: 'Italianno';
+    font-size: 6rem;
+    color: var(--color-titulo);
+  }
+
+   .divider {
+    width: calc(100% - 2rem);
+    height: var(--divider-height);
+    background: var(--color-titulo);
+    border-radius: var(--divider-radius);
+    margin: var(--divider-gap) auto;
+  }
+
+section{
+    margin-bottom: 2rem;
+} section h2 {
+    text-align: center;
+    font-family: 'Italianno';
+    font-size: 6rem;
+    color: var(--color-titulo);
+}
+
+main{
+    margin-bottom: 2rem;
+}
+
+
+  .card {
+    background: var(--color-card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transform: translateZ(20px);
+    min-height: 300px;
+    display: flex;
+     align-items: center;
+    justify-content: center;
+    background-image: 
+      radial-gradient(circle at 90% 10%, #ffecf2 0%, transparent 15%),
+      linear-gradient(to bottom right, transparent 60%, #ffe6f0 100%);
+  }
+  
+  .card p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin: 1rem 0;
+    position: relative;
+
+  }
+  
+  .card p::before {
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+  
+  article {
+    font-family: 'Albert Sans';
+    display: grid;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(255,255,255,0.8);
+    border-radius: 15px;
+    margin: 2rem auto;
+    max-width: 900px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  article:hover {
+    transform: translateY(-5px);
+  }
+  
+  article p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--color-parrafo);
+    margin: 0;
+  }
+  
+  /* Alternar orden en artículos pares */
+article:nth-child(even) {
+  direction: rtl;
+}
+
+article:nth-child(even) p,
+article:nth-child(even) img {
+  direction: ltr;
+}
+
+/* Corregimos para que el texto e imagen no se vean al revés */
+article:nth-child(even) {
+  grid-template-columns: 1fr 1fr;
+}
+
+  .imgHijos {
+    width: 50%;
+    height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .imgHijos:hover {
+    transform: scale(1.03);
+  }
+
+.heart {
+      display: inline-block;
+      color: #ff3366;
+      font-size: 6rem;
+      margin-left: 0.5rem;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+.btn-send {
+    font-family: 'Albert Sans';
+    background: var(--color-button);
+    color: white;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 2rem auto;
+  } 
+  
+  .btn-send:hover {
+    background: var(--color-button-hover);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(156,44,108,0.3);
+  } 
+
+/* ESTILOS ESPECÍFICOS PARA EL SOBRE INTERACTIVO */
+.envelope-container {
+    position: relative;
+  perspective: 800px;
+  margin: 4rem 0;
+}
+
+.envelope {
+  position: relative;
+  min-width: 250px;
+  max-width: 550px;
+  height: 350px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+/* Mejor animación al flotar */
+.envelope:hover:not(.open) {
+  transform: translateY(-10px) rotateZ(1deg);
+}
+
+/* Base del sobre más detallada */
+.envelope .base {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 345px;
+  background: var(--color-card-bg);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 10px 30px rgba(162,19,76,0.1);
+  z-index: 2;
+  border: 2px solid #A2134C;
+  border-top: none;
+}
+
+/* Solapa rediseñada con efecto 3D */
+.envelope .flap {
+  position: absolute;
+  top: 0px;
+  left: -1px;
+  width: 101%; 
+  height: 30%;
+  background: 
+    linear-gradient(160deg, #A2134C 40%, #850032 100%);
+  border-radius: 8px 8px 0 0;
+  transform-origin: top center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 -4px 12px rgba(196, 4, 81, 0.3);
+  z-index: 3;
+  border: 2px solid #A2134C;
+}
+
+
+/* Carta con animación mejorada */
+.envelope .destinatario {
+  position: absolute;
+  top: 30px; /* Mayor margen superior */
+  left: 20px;
+  right: 20px;
+  z-index: 4; /* Mayor z-index para que quede encima */
+  font-family: 'Italianno', cursive;
+  font-size: 1.8rem; /* Tamaño de fuente aumentado */
+  color: var(--color-parrafo);
+
+}
+
+/* Carta con animación mejorada */
+.envelope .letter {
+  position: absolute;
+  top: 30px; /* Mayor margen superior */
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+   padding: 3rem 2rem; /* Más padding superior */
+  border-radius: 6px;
+  transform: translateY(6%) rotateX(20deg); /* Posición inicial oculta */
+  transform-origin: bottom;
+  transition: all 0.6s 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 4; /* Mayor z-index para que quede encima */
+  font-family: 'Italianno', cursive;
+  font-size: 1.8rem; /* Tamaño de fuente aumentado */
+  color: var(--color-parrafo);
+  line-height: 1.6;
+  background: #fff9fc; /* Fondo más cálido */
+  border: 2px solid #ffd9e6; /* Borde sutil */
+  box-shadow: 
+    0 8px 30px rgba(162,19,76,0.15),
+    inset 0 0 30px rgba(255,230,240,0.5); /* Sombras internas */
+   overflow-y: auto; /* Scroll si el contenido es largo */
+}
+
+/* Estados cuando está abierto */
+.envelope.open {
+  transform: translateY(-20px);
+}
+
+.envelope.open .flap {
+  transform: rotateX(160deg) translateY(-25px); /* Giro más natural */
+}
+
+.envelope.open .letter {
+  transform: translateY(-5px) rotateX(0); /* Posición final ajustada */
+  opacity: 1;
+  transition: 
+    transform 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    opacity 0.4s ease;
+}
+
+.envelope.open .destinatario {
+  transform: translateY(-5px) rotateX(100); /* Posición final ajustada */
+  opacity: 1;
+  transition: 
+    transform 0.8s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+    opacity 0.4s ease;
+}
+
+/* Efecto de texto interno */
+/* Texto mejorado */
+.letter p {
+  font-family: "Albert Sans";
+  margin: 2rem 0; /* Más espacio entre párrafos */
+  font-size: 1.4rem; /* Tamaño aumentado */
+  color: #A2134C; /* Color más contrastante */
+  text-align: justify; /* Texto alineado */
+}
+
+.letter p:first-child {
+  margin-top: 0;
+}
+
+.letter p:last-child {
+  margin-bottom: 0;
+}
+  
+    /* Modal popup larger */
+    .modal { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: opacity 0.3s ease; }
+    .modal.show { visibility: visible; opacity: 1; }
+    .modal-content { background: #fff; padding: 1rem; border-radius: 10px; text-align: center; width: 80vw; max-width: 700px; }
+    .modal-content h3 { font-family:'Italianno'; color: var(--color-titulo); margin-bottom:1rem; font-size: 4rem; }
+    .modal-content button { margin-top:1rem; padding:0.75rem 1.5rem; border:none; background:var(--color-button); color:#fff; border-radius:5px; cursor:pointer; font-size:1rem; }
+
+    footer {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #ff3366;
+    margin-top: 20px;
+    font-family: 'Albert Sans';
+}
